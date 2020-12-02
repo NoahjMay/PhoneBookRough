@@ -50,8 +50,15 @@ public class PhoneBook
 			System.out.print("Choose a number for an action from the above list: ");
 			
 			menuCommand = menuInputScanner.nextLine().trim();
-			System.out.print("\nYou chose: ");
-
+			
+			if(menuCommand.equals("0") || menuCommand.equals("1") || menuCommand.equals("2") || menuCommand.equals("3") || menuCommand.equals("4") || 
+					menuCommand.equals("5") || menuCommand.equals("6") || menuCommand.equals("7") || menuCommand.equals("8") || 
+					menuCommand.equals("9") || menuCommand.equals("10")) 
+			{
+				System.out.print("\nYou chose: ");		
+			}
+			else System.out.println("\nYou did not input a proper number from the menu.\n");	
+			
 			
 			try 
 			{
@@ -144,41 +151,41 @@ public class PhoneBook
 				}
 			}
 			catch (Exception e) 
-			{
+			{	
 				if(menuCommand.equals("1")) {
 					System.out.println("There was an error while trying to add a new person to the phone book.\n");
 				}
-				if(menuCommand.equals("2")) {
+				else if(menuCommand.equals("2")) {
 					System.out.println("There was an error while trying to Search for a person in the phonebook by every data point.\n");
 				}
-				if(menuCommand.equals("3")) {
+				else if(menuCommand.equals("3")) {
 					System.out.println("There was an error while trying to search for a person in the phonebook by their first name.\n");
 					
 				}
-				if(menuCommand.equals("4")) {
+				else if(menuCommand.equals("4")) {
 					System.out.println("There was an error while trying to search for a person in the phonebook by their last name.\n");
 					
 				}
-				if(menuCommand.equals("5")) {
+				else if(menuCommand.equals("5")) {
 					System.out.println("There was an error while trying search for a person in the phonebook by their full name.\n");
 					
 				}
-				if(menuCommand.equals("6")) {
+				else if(menuCommand.equals("6")) {
 					System.out.println("There was an error while trying to search for a person in the phonebook by a telephone number.\n");
 				}
-				if(menuCommand.equals("7")) {
+				else if(menuCommand.equals("7")) {
 					System.out.println("There was an error while trying to search for a person in the phonebook by the city or state name.\n");
 				}
-				if(menuCommand.equals("8")) {
+				else if(menuCommand.equals("8")) {
 					System.out.println("There was an error while trying to delete a record by the records telephone number.\n");
 				}
-				if(menuCommand.equals("9")) {
+				else if(menuCommand.equals("9")) {
 					System.out.println("There was an error while trying to update a record by the records telephone number.\n");
 				}
-				if(menuCommand.equals("10")) {
+				else if(menuCommand.equals("10")) {
 					System.out.println("There was an error while trying to display records in descending order by name.\n");
 				}
-				//else System.out.println("You did not input a proper number from the command list." + menuCommand);
+				
 
 			}
 		}
