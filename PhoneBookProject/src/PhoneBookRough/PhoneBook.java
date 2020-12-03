@@ -26,26 +26,15 @@ public class PhoneBook
 	// This method takes scanner objects from the main method and runs other methods based on the user input from a menu that runs in a loop until exited.
 	public static void runConsoleCommands(Scanner menuInputScanner, Scanner consoleinputScanner, Scanner consoleStringInputScanner) 
 	{
-		String exit 								= " 0: Exit the phonebook.\n";
-		String addNewEntry 							= " 1: Add a new person to the phonebook.\n";
-		String existingEntrySearch 					= " 2: Search for a person in the phonebook by every data point. \n";
-		String firstNameSearch 						= " 3: Search for a person in the phonebook by their first name.\n";
-		String lastNameSearch 						= " 4: Search for a person in the phonebook by their last name.\n";
-		String fullNameSearch 						= " 5: Search for a person in the phonebook by their full name.\n";
-		String telephoneNumberSearch 				= " 6: Search for a person in the phonebook by a telephone number.\n";
-		String cityStateSearch 						= " 7: Search for a person in the phonebook by the city or state name.\n";
-		String deleteRecordByTelephoneNumber 		= " 8: Delete a record by the records telephone number.\n";
-		String updateRecordByTelephoneNumber 		= " 9: Update a record by the records telephone number.\n";
-		String displayRecordsDecendingOrderedByName	= "10: Display records in descending order by name.\n";	
 		String menuCommand 							= "default";
 		
 		while(menuCommand != "exit")
 		{
 			
 			
-			System.out.println(exit + addNewEntry + existingEntrySearch + firstNameSearch + lastNameSearch + fullNameSearch + 
-					   telephoneNumberSearch + cityStateSearch + deleteRecordByTelephoneNumber + updateRecordByTelephoneNumber +
-					   displayRecordsDecendingOrderedByName);
+			System.out.println(StringMenu.EXIT + "" + StringMenu.ADDNEWENTRY + StringMenu.EXISTINGENTRYSEARCH + StringMenu.FIRSTNAMESEARCH + StringMenu.LASTNAMESEARCH + 
+					StringMenu.FULLNAMESEARCH + StringMenu.TELEPHONENUMBERSEARCH + StringMenu.CITYSTATESEARCH + StringMenu.DELETERECORDBYTELEPHONENUMBER + 
+					StringMenu.UPDATERECORDBYTELEPHONENUMBER + StringMenu.DISPLAYRECORDSINDECENDINGORDERBYNAME);
 							   
 			System.out.print("Choose a number for an action from the above list: ");
 			
@@ -68,69 +57,69 @@ public class PhoneBook
 
 				case "0":
 					
-					System.out.println(exit);
+					System.out.println(StringMenu.EXIT);
 					menuCommand = "exit";
 					break;
 					
 				case "1":
 					
-					System.out.println(addNewEntry);
+					System.out.println(StringMenu.ADDNEWENTRY);
 					addNewEntry(consoleInputForAPerson(consoleinputScanner));
 					
 					break;
 					
 				case "2":
 					
-					System.out.println(existingEntrySearch);
+					System.out.println(StringMenu.EXISTINGENTRYSEARCH);
 					existingEntrySearch(consoleInputForAPerson(consoleinputScanner));
 					
 					break;
 					
 				case "3":
 					
-					System.out.println(firstNameSearch);
+					System.out.println(StringMenu.FIRSTNAMESEARCH);
 					firstNameSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "4":
 					
-					System.out.println(lastNameSearch);
+					System.out.println(StringMenu.LASTNAMESEARCH);
 					lastNameSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "5":
 					
-					System.out.println(fullNameSearch);
+					System.out.println(StringMenu.FULLNAMESEARCH);
 					fullNameSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "6":
 					
-					System.out.println(telephoneNumberSearch);
+					System.out.println(StringMenu.TELEPHONENUMBERSEARCH);
 					telephoneNumberSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "7":
 					
-					System.out.println(cityStateSearch);
+					System.out.println(StringMenu.CITYSTATESEARCH);
 					cityStateSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "8":
 					
-					System.out.println(deleteRecordByTelephoneNumber);
+					System.out.println(StringMenu.DELETERECORDBYTELEPHONENUMBER);
 					deleteARecordByItsTelephoneNumber(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "9":
 					
-					System.out.println(updateRecordByTelephoneNumber);
+					System.out.println(StringMenu.UPDATERECORDBYTELEPHONENUMBER);
 					updateARecordByItsTelephoneNumber(consoleStringInputForSearching(consoleStringInputScanner),
 					consoleInputForAPerson(consoleinputScanner));
 					
@@ -138,7 +127,7 @@ public class PhoneBook
 					
 				case "10":
 					
-					System.out.println(displayRecordsDecendingOrderedByName);
+					System.out.println(StringMenu.DISPLAYRECORDSINDECENDINGORDERBYNAME);
 					sortPersonArraryByFullName();
 					
 					for (int index = 0; index < personArrary.length; index++) 
@@ -460,4 +449,44 @@ public class PhoneBook
 		System.out.println("("+ firstThree+ ")-" + secondThree + "-" + lastFour);
 	}
 	
+	enum StringMenu
+	{
+		
+		EXIT{
+		      public String toString() {return " 0: Exit the phonebook.\n";}
+		  },
+		ADDNEWENTRY{
+		      public String toString() {return " 1: Add a new person to the phonebook.\n";}
+		  },
+		EXISTINGENTRYSEARCH{
+		      public String toString() {return " 2: Search for a person in the phonebook by every data point. \n";}
+		  },
+		FIRSTNAMESEARCH{
+		      public String toString() {return " 3: Search for a person in the phonebook by their first name.\n";}
+		  },
+		LASTNAMESEARCH{
+		      public String toString() {return " 4: Search for a person in the phonebook by their last name.\n";}
+		  },
+		FULLNAMESEARCH{
+		      public String toString() {return " 5: Search for a person in the phonebook by their full name.\n";}
+		  },
+		TELEPHONENUMBERSEARCH{
+		      public String toString() {return " 6: Search for a person in the phonebook by a telephone number.\n";}
+		  },
+		CITYSTATESEARCH{
+		      public String toString() {return " 7: Search for a person in the phonebook by the city or state name.\n";}
+		  },
+		DELETERECORDBYTELEPHONENUMBER{
+		      public String toString() {return " 8: Delete a record by the records telephone number.\n";}
+		  },
+		UPDATERECORDBYTELEPHONENUMBER{
+		      public String toString() {return " 9: Update a record by the records telephone number.\n";}
+		  },
+		DISPLAYRECORDSINDECENDINGORDERBYNAME{
+		      public String toString() {return "10: Display records in descending order by name.\n";}
+		  };
+						
+	}
+	
 }
+
