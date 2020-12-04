@@ -14,10 +14,10 @@ public class Person extends Address
 		super();
 	}
 	
-	Person(String fullName, String address, String cityName, String stateName, long zipCode, long phoneNumber)
+	Person(String fullName, String street, String cityName, String stateName, long zipCode, long phoneNumber)
 	{
 		
-		super(address, cityName,stateName, zipCode);
+		super(street, cityName,stateName, zipCode);
 		
 		this.fullName 			= fullName;
 		

@@ -3,7 +3,7 @@ package PhoneBookRough;
 
 public class Address
 {
-	private String address;
+	private String street;
 	private String cityName;
 	private String stateName;
 	
@@ -11,19 +11,19 @@ public class Address
 	
 	Address(){}
 	
-	Address(String address, String cityName, String stateName, long zipCode)
+	Address(String street, String cityName, String stateName, long zipCode)
 	{
 		
-		this.address 	= address;
+		this.street 	= street;
 		this.cityName 	= cityName;
 		this.stateName 	= stateName;
 	
 		this.zipCode 	= zipCode;
 	}
 
-	public String getAddress() 
+	public String getStreet() 
 	{
-		return address;
+		return street;
 	}
 
 	public String getCityName() 
@@ -41,9 +41,9 @@ public class Address
 		return zipCode;
 	}
 
-	public void setAddress(String address) 
+	public void setStreet(String address) 
 	{
-		this.address = address;
+		this.street = address;
 	}
 
 	public void setCityName(String cityName) 

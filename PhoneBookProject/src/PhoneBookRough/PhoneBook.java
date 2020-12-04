@@ -26,15 +26,15 @@ public class PhoneBook
 	// This method takes scanner objects from the main method and runs other methods based on the user input from a menu that runs in a loop until exited.
 	public static void runConsoleCommands(Scanner menuInputScanner, Scanner consoleinputScanner, Scanner consoleStringInputScanner) 
 	{
-		String menuCommand 							= "default";
+		String menuCommand = "default";
 		
 		while(menuCommand != "exit")
 		{
 			
 			
-			System.out.println(StringMenu.EXIT + "" + StringMenu.ADDNEWENTRY + StringMenu.EXISTINGENTRYSEARCH + StringMenu.FIRSTNAMESEARCH + StringMenu.LASTNAMESEARCH + 
-					StringMenu.FULLNAMESEARCH + StringMenu.TELEPHONENUMBERSEARCH + StringMenu.CITYSTATESEARCH + StringMenu.DELETERECORDBYTELEPHONENUMBER + 
-					StringMenu.UPDATERECORDBYTELEPHONENUMBER + StringMenu.DISPLAYRECORDSINDECENDINGORDERBYNAME);
+			System.out.println(enumMenu.EXIT + "" + enumMenu.ADD_NEW_ENTRY + enumMenu.EXISTING_ENTRY_SEARCH + enumMenu.FIRST_NAME_SEARCH + enumMenu.LAST_NAME_SEARCH + 
+					enumMenu.FULL_NAME_SEARCH + enumMenu.TELEPHONE_NUMBER_SEARCH + enumMenu.CITY_STATE_SEARCH + enumMenu.DELETE_RECORD_BY_TELEPHONE_NUMBER + 
+					enumMenu.UPDATE_RECORD_BY_TELEPHONE_NUMBER + enumMenu.DISPLAY_RECORDS_IN_DECENDING_ORDER_BY_NAME);
 							   
 			System.out.print("Choose a number for an action from the above list: ");
 			
@@ -57,69 +57,69 @@ public class PhoneBook
 
 				case "0":
 					
-					System.out.println(StringMenu.EXIT);
+					System.out.println(enumMenu.EXIT);
 					menuCommand = "exit";
 					break;
 					
 				case "1":
 					
-					System.out.println(StringMenu.ADDNEWENTRY);
+					System.out.println(enumMenu.ADD_NEW_ENTRY);
 					addNewEntry(consoleInputForAPerson(consoleinputScanner));
 					
 					break;
 					
 				case "2":
 					
-					System.out.println(StringMenu.EXISTINGENTRYSEARCH);
+					System.out.println(enumMenu.EXISTING_ENTRY_SEARCH);
 					existingEntrySearch(consoleInputForAPerson(consoleinputScanner));
 					
 					break;
 					
 				case "3":
 					
-					System.out.println(StringMenu.FIRSTNAMESEARCH);
+					System.out.println(enumMenu.FIRST_NAME_SEARCH);
 					firstNameSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "4":
 					
-					System.out.println(StringMenu.LASTNAMESEARCH);
+					System.out.println(enumMenu.LAST_NAME_SEARCH);
 					lastNameSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "5":
 					
-					System.out.println(StringMenu.FULLNAMESEARCH);
+					System.out.println(enumMenu.FULL_NAME_SEARCH);
 					fullNameSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "6":
 					
-					System.out.println(StringMenu.TELEPHONENUMBERSEARCH);
+					System.out.println(enumMenu.TELEPHONE_NUMBER_SEARCH);
 					telephoneNumberSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "7":
 					
-					System.out.println(StringMenu.CITYSTATESEARCH);
+					System.out.println(enumMenu.CITY_STATE_SEARCH);
 					cityStateSearch(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "8":
 					
-					System.out.println(StringMenu.DELETERECORDBYTELEPHONENUMBER);
+					System.out.println(enumMenu.DELETE_RECORD_BY_TELEPHONE_NUMBER);
 					deleteARecordByItsTelephoneNumber(consoleStringInputForSearching(consoleStringInputScanner));
 					
 					break;
 					
 				case "9":
 					
-					System.out.println(StringMenu.UPDATERECORDBYTELEPHONENUMBER);
+					System.out.println(enumMenu.UPDATE_RECORD_BY_TELEPHONE_NUMBER);
 					updateARecordByItsTelephoneNumber(consoleStringInputForSearching(consoleStringInputScanner),
 					consoleInputForAPerson(consoleinputScanner));
 					
@@ -127,7 +127,7 @@ public class PhoneBook
 					
 				case "10":
 					
-					System.out.println(StringMenu.DISPLAYRECORDSINDECENDINGORDERBYNAME);
+					System.out.println(enumMenu.DISPLAY_RECORDS_IN_DECENDING_ORDER_BY_NAME);
 					sortPersonArraryByFullName();
 					
 					for (int index = 0; index < personArrary.length; index++) 
@@ -141,38 +141,48 @@ public class PhoneBook
 			}
 			catch (Exception e) 
 			{	
-				if(menuCommand.equals("1")) {
-					System.out.println("There was an error while trying to add a new person to the phone book.\n");
+				if(menuCommand.equals("1")) 
+				{
+					System.out.println(enumMenu.WHILE_TRYING_ERROR + "a new person to the phone book.\n");
 				}
-				else if(menuCommand.equals("2")) {
-					System.out.println("There was an error while trying to Search for a person in the phonebook by every data point.\n");
+				else if(menuCommand.equals("2")) 
+				{
+					System.out.println(enumMenu.SEARCH_BY_ERROR + "every data point.\n");
 				}
-				else if(menuCommand.equals("3")) {
-					System.out.println("There was an error while trying to search for a person in the phonebook by their first name.\n");
+				else if(menuCommand.equals("3")) 
+				{
+					System.out.println(enumMenu.SEARCH_BY_ERROR + "their first name.\n");
 					
 				}
-				else if(menuCommand.equals("4")) {
-					System.out.println("There was an error while trying to search for a person in the phonebook by their last name.\n");
+				else if(menuCommand.equals("4")) 
+				{
+					System.out.println(enumMenu.SEARCH_BY_ERROR + "their last name.\n");
 					
 				}
-				else if(menuCommand.equals("5")) {
-					System.out.println("There was an error while trying search for a person in the phonebook by their full name.\n");
+				else if(menuCommand.equals("5"))
+				{
+					System.out.println(enumMenu.SEARCH_BY_ERROR + "their full name.\n");
 					
 				}
-				else if(menuCommand.equals("6")) {
-					System.out.println("There was an error while trying to search for a person in the phonebook by a telephone number.\n");
+				else if(menuCommand.equals("6")) 
+				{
+					System.out.println(enumMenu.SEARCH_BY_ERROR + "a telephone number.\n");
 				}
-				else if(menuCommand.equals("7")) {
-					System.out.println("There was an error while trying to search for a person in the phonebook by the city or state name.\n");
+				else if(menuCommand.equals("7")) 
+				{
+					System.out.println(enumMenu.SEARCH_BY_ERROR + "the city or state name.\n");
 				}
-				else if(menuCommand.equals("8")) {
-					System.out.println("There was an error while trying to delete a record by the records telephone number.\n");
+				else if(menuCommand.equals("8")) 
+				{
+					System.out.println(enumMenu.WHILE_TRYING_ERROR + "delete a record by the records telephone number.\n");
 				}
-				else if(menuCommand.equals("9")) {
-					System.out.println("There was an error while trying to update a record by the records telephone number.\n");
+				else if(menuCommand.equals("9")) 
+				{
+					System.out.println(enumMenu.WHILE_TRYING_ERROR + "update a record by the records telephone number.\n");
 				}
-				else if(menuCommand.equals("10")) {
-					System.out.println("There was an error while trying to display records in descending order by name.\n");
+				else if(menuCommand.equals("10")) 
+				{
+					System.out.println(enumMenu.WHILE_TRYING_ERROR + "display records in descending order by name.\n");
 				}
 				
 
@@ -185,21 +195,37 @@ public class PhoneBook
 	public static Person consoleInputForAPerson(Scanner consoleinputScanner) 
 	{
 		System.out.println("Please input values for a person coma seperated with"
-				+ " a leading space for each value after the full name.\ni.e. "
-				+ "full name, address, city, state, zip code, phone number");
+				+ " a leading space for each value after the full name.\n\ni.e. "
+				+ "full name, street address, city, state, zip code, phone number");
 		
 		String stringInputArray[] = consoleinputScanner.nextLine().split(",");
 		
-		String 	fullName 	= stringInputArray[0].trim();
-		String 	address 	= stringInputArray[1].trim();
-		String 	cityName 	= stringInputArray[2].trim();
-		String 	stateName 	= stringInputArray[3].trim();
+		String 	fullName 		= stringInputArray[0].trim();
+		String 	street 			= stringInputArray[1].trim();
+		String 	cityName 		= stringInputArray[2].trim();
+		String 	stateName 		= stringInputArray[3].trim();	
+		String 	strZipCode 		= stringInputArray[4].trim();
+		String 	strPhoneNumber 	= stringInputArray[5].trim(); 
 		
-		long 	zipCode 	= Long.parseLong(stringInputArray[4].trim());
-		long 	phoneNumber = Long.parseLong(stringInputArray[5].trim());
+		if(Validation.stringValidation(fullName) == true && 
+		   Validation.streetValidation(street) == true && 
+		   Validation.stringValidation(cityName) == true &&
+		   Validation.stringValidation(stateName) == true && 
+		   Validation.zipCodeValidation(strZipCode) == true && 
+		   Validation.phoneNumberValidation(strPhoneNumber) == true) 
+		{
+					long zipCode = Long.parseLong(strZipCode);
+					long phoneNumber = Long.parseLong(strPhoneNumber);
+					Person newPerson = new Person(fullName, street, cityName, stateName, zipCode, phoneNumber);
+					return newPerson;
+		}
+		else 
+		{
+			System.out.println("\n" + enumMenu.WHILE_TRYING_ERROR + "a new person to the phone book.\n");
+			return null;
+		}
 		
-		Person newPerson = new Person(fullName, address, cityName, stateName, zipCode, phoneNumber);
-		return newPerson;	
+					
 	}
 	
 	//This method prompts the user for data and then returns a string from the command console.
@@ -240,7 +266,7 @@ public class PhoneBook
 	{	
 			
 		String 	fullName 	= personSearch.getFullName().toLowerCase();
-		String 	address 	= personSearch.getAddress().toLowerCase();
+		String 	address 	= personSearch.getStreet().toLowerCase();
 		String 	cityName 	= personSearch.getCityName().toLowerCase();
 		String 	stateName 	= personSearch.getStateName().toLowerCase();
 			
@@ -251,7 +277,7 @@ public class PhoneBook
 		for (int index = 0; index < personArrary.length; index++) 
 		{
 			
-			if(personArrary[index].getFullName().toLowerCase().equals(fullName) && personArrary[index].getAddress().toLowerCase().equals(address)		&&
+			if(personArrary[index].getFullName().toLowerCase().equals(fullName) && personArrary[index].getStreet().toLowerCase().equals(address)		&&
 			   personArrary[index].getCityName().toLowerCase().equals(cityName)	&& personArrary[index].getStateName().toLowerCase().equals(stateName)	&&
 	           personArrary[index].getZipCode()  == 				  zipCode	&& personArrary[index].getPhoneNumber() == 				   phoneNumber	) 
 			{
@@ -415,7 +441,7 @@ public class PhoneBook
 				personArrary[index].setFirstName(updatePerson.getFirstName());
 				personArrary[index].setLastName(updatePerson.getLastName());
 				personArrary[index].setFullName(updatePerson.getFullName());
-				personArrary[index].setAddress(updatePerson.getAddress());
+				personArrary[index].setStreet(updatePerson.getStreet());
 				personArrary[index].setCityName(updatePerson.getCityName());
 				personArrary[index].setStateName(updatePerson.getStateName());
 				personArrary[index].setZipCode(updatePerson.getZipCode());
@@ -438,7 +464,7 @@ public class PhoneBook
 	// This method displays every parameter of a person object at a given index on the personArrary and formats the phone number.
 	public static void displayPerson(int index) 
 	{		
-		System.out.print("\n" + personArrary[index].getFullName() + ", " + personArrary[index].getAddress() + ", " + personArrary[index].getCityName() + 
+		System.out.print("\n" + personArrary[index].getFullName() + ", " + personArrary[index].getStreet() + ", " + personArrary[index].getCityName() + 
 						   ", " + personArrary[index].getStateName() + ", " + personArrary[index].getZipCode()+ ", ");
 		
 		String formatString 	= Long.toString(personArrary[index].getPhoneNumber());
@@ -449,44 +475,7 @@ public class PhoneBook
 		System.out.println("("+ firstThree+ ")-" + secondThree + "-" + lastFour);
 	}
 	
-	enum StringMenu
-	{
-		
-		EXIT{
-		      public String toString() {return " 0: Exit the phonebook.\n";}
-		  },
-		ADDNEWENTRY{
-		      public String toString() {return " 1: Add a new person to the phonebook.\n";}
-		  },
-		EXISTINGENTRYSEARCH{
-		      public String toString() {return " 2: Search for a person in the phonebook by every data point. \n";}
-		  },
-		FIRSTNAMESEARCH{
-		      public String toString() {return " 3: Search for a person in the phonebook by their first name.\n";}
-		  },
-		LASTNAMESEARCH{
-		      public String toString() {return " 4: Search for a person in the phonebook by their last name.\n";}
-		  },
-		FULLNAMESEARCH{
-		      public String toString() {return " 5: Search for a person in the phonebook by their full name.\n";}
-		  },
-		TELEPHONENUMBERSEARCH{
-		      public String toString() {return " 6: Search for a person in the phonebook by a telephone number.\n";}
-		  },
-		CITYSTATESEARCH{
-		      public String toString() {return " 7: Search for a person in the phonebook by the city or state name.\n";}
-		  },
-		DELETERECORDBYTELEPHONENUMBER{
-		      public String toString() {return " 8: Delete a record by the records telephone number.\n";}
-		  },
-		UPDATERECORDBYTELEPHONENUMBER{
-		      public String toString() {return " 9: Update a record by the records telephone number.\n";}
-		  },
-		DISPLAYRECORDSINDECENDINGORDERBYNAME{
-		      public String toString() {return "10: Display records in descending order by name.\n";}
-		  };
-						
-	}
+	
 	
 }
 
