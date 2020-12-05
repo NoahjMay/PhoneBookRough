@@ -1,6 +1,6 @@
 package PhoneBookRough;
 
-enum enumMenu
+public enum enumMenu
 {
 	
 	EXIT
@@ -45,7 +45,7 @@ enum enumMenu
 	},
 	DISPLAY_RECORDS_IN_DECENDING_ORDER_BY_NAME
 	{
-	      public String toString() {return "10: Display records in descending order by name.\n";}
+	      public String toString() {return "10: Display records in descending order by name.";}
 	},
 	SEARCH_BY_ERROR
 	{

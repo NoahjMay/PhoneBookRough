@@ -9,7 +9,7 @@ public class Validation
 	
 	public static boolean stringValidation(String stringToValidate) 
 	{
-		Pattern pattern 	= Pattern.compile("^[a-zA-Z]", Pattern.CASE_INSENSITIVE);
+		Pattern pattern 	= Pattern.compile("^[a-zA-Z]");
 		Matcher matcher 	= pattern.matcher(stringToValidate);
 		
 		boolean matchFound 	= matcher.find();

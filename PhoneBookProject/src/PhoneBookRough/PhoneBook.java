@@ -34,7 +34,7 @@ public class PhoneBook
 			
 			System.out.println(enumMenu.EXIT + "" + enumMenu.ADD_NEW_ENTRY + enumMenu.EXISTING_ENTRY_SEARCH + enumMenu.FIRST_NAME_SEARCH + enumMenu.LAST_NAME_SEARCH + 
 					enumMenu.FULL_NAME_SEARCH + enumMenu.TELEPHONE_NUMBER_SEARCH + enumMenu.CITY_STATE_SEARCH + enumMenu.DELETE_RECORD_BY_TELEPHONE_NUMBER + 
-					enumMenu.UPDATE_RECORD_BY_TELEPHONE_NUMBER + enumMenu.DISPLAY_RECORDS_IN_DECENDING_ORDER_BY_NAME);
+					enumMenu.UPDATE_RECORD_BY_TELEPHONE_NUMBER + enumMenu.DISPLAY_RECORDS_IN_DECENDING_ORDER_BY_NAME + "\n");
 							   
 			System.out.print("Choose a number for an action from the above list: ");
 			
@@ -133,6 +133,7 @@ public class PhoneBook
 					for (int index = 0; index < personArrary.length; index++) 
 					{
 						displayPerson(index);
+						System.out.println();
 					}
 					break;
 		
@@ -196,7 +197,7 @@ public class PhoneBook
 	{
 		System.out.println("Please input values for a person coma seperated with"
 				+ " a leading space for each value after the full name.\n\ni.e. "
-				+ "full name, street address, city, state, zip code, phone number");
+				+ "John Doe, 114 Market St, St Louis, MO, 63403, 6366435698\n");
 		
 		String stringInputArray[] = consoleinputScanner.nextLine().split(",");
 		
@@ -221,7 +222,7 @@ public class PhoneBook
 		}
 		else 
 		{
-			System.out.println("\n" + enumMenu.WHILE_TRYING_ERROR + "a new person to the phone book.\n");
+			System.out.println("\n" + enumMenu.WHILE_TRYING_ERROR + "input data for a new person for the phonebook.\n");
 			return null;
 		}
 		
@@ -231,12 +232,10 @@ public class PhoneBook
 	//This method prompts the user for data and then returns a string from the command console.
 	public static String consoleStringInputForSearching(Scanner consoleStringInput) 
 	{
-		System.out.print("please input the data you chose to search by.");
+		System.out.print("please input data: ");
 		String stringInputArray = consoleStringInput.nextLine().trim();
 		
-		String 	searchString = stringInputArray;
-		
-		return searchString;
+		return stringInputArray;
 	}
 	
 	//This method creates a new array of person objects, with an increased size based on the personCount it then
@@ -244,19 +243,22 @@ public class PhoneBook
 	//After that it sets the new array to the static array.
 	public static void addNewEntry(Person newPerson) 
 	{	
-		
-		personCount++;
-		
-		Person newPersonArrary[] = new Person[personCount]; 
-		
-		for (int index = 0; index < personArrary.length; index++) 
+		if(newPerson != null) 
 		{
-			newPersonArrary[index] = personArrary[index];
+			personCount++;
+			
+			Person newPersonArrary[] = new Person[personCount]; 
+			
+			for (int index = 0; index < personArrary.length; index++) 
+			{
+				newPersonArrary[index] = personArrary[index];
 
+			}
+			newPersonArrary[newPersonArrary.length - 1] = newPerson;		
+			System.out.println();		
+			personArrary = newPersonArrary;
 		}
-		newPersonArrary[newPersonArrary.length - 1] = newPerson;		
-		System.out.println();		
-		personArrary = newPersonArrary;
+		
 				
 	}
 	
@@ -298,20 +300,27 @@ public class PhoneBook
 	public static void firstNameSearch(String firstNameSearch) 
 	{
 		
-		System.out.println("The person or people with this first name are.");
-		for (int index = 0; index < personArrary.length; index++) 
+		
+		
+		if(Validation.stringValidation(firstNameSearch) == true) 
 		{
-			String firstName = personArrary[index].getFirstName().toLowerCase();
-			if(firstName.equals(firstNameSearch.toLowerCase())) 
+			System.out.println("The person or people with this first name are.");
+			for (int index = 0; index < personArrary.length; index++) 
 			{
-				
-				displayPerson(index);
-			}
-			if (index == personArrary.length) 
-			{
-				System.out.println("A person with this first name is not in the phone book.");
-			}
-		}
+				String firstName = personArrary[index].getFirstName().toLowerCase();
+				if(firstName.equals(firstNameSearch.toLowerCase())) 
+				{
+					
+					displayPerson(index);
+				}
+				if (index == personArrary.length) 
+				{
+					System.out.println("A person with this first name is not in the phone book.");
+				}
+			}	
+		}else System.out.println(enumMenu.SEARCH_BY_ERROR + "their first name.\n");
+		
+		
 		
 	}
 	
@@ -319,82 +328,90 @@ public class PhoneBook
 	//displaying records that match along the way.
 	public static void lastNameSearch(String lastNameSearch) 
 	{
-		System.out.println("The person or people with this last name are.");
-		for (int index = 0; index < personArrary.length; index++) 
+		if(Validation.stringValidation(lastNameSearch) == true) 
 		{
-			String lastName = personArrary[index].getLastName().toLowerCase();
-			
-			if(lastName.equals(lastNameSearch.toLowerCase())) 
+			for (int index = 0; index < personArrary.length; index++) 
 			{
-				displayPerson(index);
-			} 
-			if (index == personArrary.length) 
-			{
-				System.out.println("A person with this last name is not in the phone book.");
+				String lastName = personArrary[index].getLastName().toLowerCase();
+				
+				if(lastName.equals(lastNameSearch.toLowerCase())) 
+				{
+					displayPerson(index);
+				} 
+				if (index == personArrary.length) 
+				{
+					System.out.println("A person with this last name is not in the phone book.");
+				}
 			}
-		}		
+		}else System.out.println(enumMenu.SEARCH_BY_ERROR + "their last name.\n");
 	}
+	
 	//This method searches every value of the static array of person objects for objects that have the same full name and 
 	//displaying records that match along the way.
 	public static void fullNameSearch(String fullNameSearch) 
 	{	
-		System.out.println("The person or people with this full name are.");
-		for (int index = 0; index < personArrary.length; index++) 
+		if(Validation.stringValidation(fullNameSearch) == true) 
 		{
-			String fullName = personArrary[index].getFullName().toLowerCase();
-			
-			if(fullName.equals(fullNameSearch.toLowerCase())) 
-			{		
-				displayPerson(index);
-			}
-			if (index == personArrary.length) 
+			System.out.println(fullNameSearch);
+			for (int index = 0; index < personArrary.length; index++) 
 			{
-				System.out.println("A person with this name is not in the phone book.");
-			}
-		}	
-		
+				String fullName = personArrary[index].getFullName().toLowerCase();
+				
+				if(fullName.equals(fullNameSearch.toLowerCase())) 
+				{		
+					displayPerson(index);
+				}
+				if (index == personArrary.length) 
+				{
+					System.out.println("A person with this name is not in the phone book.");
+				}
+			}	
+		}else System.out.println(enumMenu.SEARCH_BY_ERROR + "their full name.\n");
 		
 	}
 	//This method searches every value of the static array of person objects for objects that have the same phone number and 
 	//displaying records that match along the way.
 	public static void telephoneNumberSearch(String telephoneNumber) 
 	{
-		long longTelephoneNumber = Long.parseLong(telephoneNumber);
-		
-		System.out.println("The person or people with this phone number are.");
-		for (int index = 0; index < personArrary.length; index++) 
+		if(Validation.phoneNumberValidation(telephoneNumber) == true) 
 		{
-			if(personArrary[index].getPhoneNumber() == longTelephoneNumber) 
+			long longTelephoneNumber = Long.parseLong(telephoneNumber);
+			
+			for (int index = 0; index < personArrary.length; index++) 
 			{
-				displayPerson(index);
-			}
-			if (index == personArrary.length) 
-			{
-				System.out.println("A person with this phone number is not in the phone book.");
-			}
-		}	
-	
+				if(personArrary[index].getPhoneNumber() == longTelephoneNumber) 
+				{
+					displayPerson(index);
+				}
+				if (index == personArrary.length) 
+				{
+					System.out.println("A person with this phone number is not in the phone book.");
+				}
+			}	
+		}else System.out.println(enumMenu.SEARCH_BY_ERROR + "their telephone number.\n");
 	}
 	
 	//This method searches every value of the static array of person objects for objects that have the same state or city name.
 	//displaying records that match along the way.
 	public static void cityStateSearch(String cityState) 
 	{	
-		System.out.println("The person or people with this city or state are.");
-		for (int index = 0; index < personArrary.length; index++) 
+		if(Validation.stringValidation(cityState) == true) 
 		{
-			String cityName 	= personArrary[index].getCityName().toLowerCase();
-			String stateName 	= personArrary[index].getStateName().toLowerCase();
-			
-			if(cityName.equals(cityState.toLowerCase()) || stateName.equals(cityState.toLowerCase())) 
+			for (int index = 0; index < personArrary.length; index++) 
 			{
-				displayPerson(index);
+				String cityName 	= personArrary[index].getCityName().toLowerCase();
+				String stateName 	= personArrary[index].getStateName().toLowerCase();
+				
+				if(cityName.equals(cityState.toLowerCase()) || stateName.equals(cityState.toLowerCase())) 
+				{
+					displayPerson(index);
+				}
+				if (index == personArrary.length) 
+				{
+			           System.out.println("A person with this city or state is not in the phone book.");
+				}
 			}
-			if (index == personArrary.length) 
-			{
-		           System.out.println("A person with this city or state is not in the phone book.");
-			}
-		}
+		}else System.out.println(enumMenu.SEARCH_BY_ERROR + "the city or State.\n");
 	}
 
 	//This method Deletes A record in the static array of person objects buy creating a new array one index smaller and then setting 
@@ -404,29 +421,31 @@ public class PhoneBook
 	{	
 		long longDeletePhoneNumber = Long.parseLong(deletePhoneNumber);
 		
-		for (int index = 0; index < personArrary.length; index++) 
+		if(Validation.phoneNumberValidation(deletePhoneNumber) == true) 
 		{
-			if(personArrary[index].getPhoneNumber() == longDeletePhoneNumber) 
+			for (int index = 0; index < personArrary.length; index++) 
 			{
-				personCount--;	
-				
-				Person removeAPersonArrary[] 	= new Person[personCount]; 
-				
-				personArrary[index] 			= personArrary[personArrary.length-1];
-				
-				for (int index2 = 0; index2 < personArrary.length-1; index2++) 
+				if(personArrary[index].getPhoneNumber() == longDeletePhoneNumber) 
 				{
-					removeAPersonArrary[index2] = personArrary[index2];
-
+					personCount--;	
+					
+					Person removeAPersonArrary[] 	= new Person[personCount]; 
+					
+					personArrary[index] 			= personArrary[personArrary.length-1];
+					
+					for (int index2 = 0; index2 < personArrary.length-1; index2++) 
+					{
+						removeAPersonArrary[index2] = personArrary[index2];
+	
+					}
+					personArrary = removeAPersonArrary;	
+				} 
+				if (index == personArrary.length) 
+				{
+					System.out.println("A person with this phone number is not in the phone book.");
 				}
-				personArrary = removeAPersonArrary;	
-			} 
-			if (index == personArrary.length) 
-			{
-				System.out.println("A person with this phone number is not in the phone book.");
-			}
-		}	
-		
+			}	
+		}else System.out.println(enumMenu.WHILE_TRYING_ERROR + "delete a record by the records telephone number.\n");
 	}
 
 	//This method updates a record in the static array of person objects when given a number tied to someone in the array. 
@@ -434,24 +453,27 @@ public class PhoneBook
 	{	
 		long longUpdatePhoneNumber = Long.parseLong(updatePhoneNumber);
 		
-		for (int index = 0; index < personArrary.length; index++) 
+		if(Validation.phoneNumberValidation(updatePhoneNumber) == true) 
 		{
-			if(personArrary[index].getPhoneNumber() == longUpdatePhoneNumber) 
+			for (int index = 0; index < personArrary.length; index++) 
 			{
-				personArrary[index].setFirstName(updatePerson.getFirstName());
-				personArrary[index].setLastName(updatePerson.getLastName());
-				personArrary[index].setFullName(updatePerson.getFullName());
-				personArrary[index].setStreet(updatePerson.getStreet());
-				personArrary[index].setCityName(updatePerson.getCityName());
-				personArrary[index].setStateName(updatePerson.getStateName());
-				personArrary[index].setZipCode(updatePerson.getZipCode());
-				personArrary[index].setPhoneNumber(updatePerson.getPhoneNumber());
-			}
-			if (index == personArrary.length) 
-			{
-				System.out.println("A person with this phone number is not in the phone book.");
+				if(personArrary[index].getPhoneNumber() == longUpdatePhoneNumber) 
+				{
+					personArrary[index].setFirstName(updatePerson.getFirstName());
+					personArrary[index].setLastName(updatePerson.getLastName());
+					personArrary[index].setFullName(updatePerson.getFullName());
+					personArrary[index].setStreet(updatePerson.getStreet());
+					personArrary[index].setCityName(updatePerson.getCityName());
+					personArrary[index].setStateName(updatePerson.getStateName());
+					personArrary[index].setZipCode(updatePerson.getZipCode());
+					personArrary[index].setPhoneNumber(updatePerson.getPhoneNumber());
+				}
+				if (index == personArrary.length) 
+				{
+					System.out.println("A person with this phone number is not in the phone book.");
+				}	
 			}	
-		}		
+		}else System.out.println(enumMenu.WHILE_TRYING_ERROR + "update a record by the records telephone number.\n");
 	}
 	
 	//This method sorts the static array of person objects by full name.
