@@ -45,7 +45,7 @@ public enum enumMenu
 	},
 	DISPLAY_RECORDS_IN_DECENDING_ORDER_BY_NAME
 	{
-	      public String toString() {return "10: Display records in descending order by name.";}
+	      public String toString() {return "10: Display records in descending order by name.\n";}
 	},
 	SEARCH_BY_ERROR
 	{
