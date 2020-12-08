@@ -7,6 +7,12 @@ public enum enumMenu
 	{
 	      public String toString() {return " 0: Exit the phonebook.\n";}
 	},
+	INPUT_VALUES_FOR_A_PERSON
+	{
+	      public String toString() {return "Please input data for a person in this format./n "
+					+ "John Doe, 114 Market St, St Louis, MO, 63403, 6366435698/n"
+					+ "Every data set is necessary./n";}
+	},
 	ADD_NEW_ENTRY
 	{
 	      public String toString() {return " 1: Add a new person to the phonebook.\n";}
@@ -54,6 +60,11 @@ public enum enumMenu
 	WHILE_TRYING_ERROR
 	{
 	      public String toString() {return "There was an error while trying to ";}
+	},
+	IMPROPER_NUMBER_ERROR
+	{
+	      public String toString() {return "\nYou did not input a proper number from the menu.\n";}
 	};
+	
 					
 }

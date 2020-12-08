@@ -46,7 +46,7 @@ public class PhoneBook
 			{
 				System.out.print("\nYou chose: ");		
 			}
-			else System.out.println("\nYou did not input a proper number from the menu.\n");	
+			else System.out.println(enumMenu.IMPROPER_NUMBER_ERROR);	
 			
 			
 			try 
@@ -195,9 +195,7 @@ public class PhoneBook
 	//data that should be integers into longs. it then calls the Person constructor and returns a person object.
 	public static Person consoleInputForAPerson(Scanner consoleinputScanner) 
 	{
-		System.out.println("Please input values for a person coma seperated with"
-				+ " a leading space for each value after the full name.\n\ni.e. "
-				+ "John Doe, 114 Market St, St Louis, MO, 63403, 6366435698\n");
+		System.out.println(enumMenu.INPUT_VALUES_FOR_A_PERSON);
 		
 		String stringInputArray[] = consoleinputScanner.nextLine().split(",");
 		
@@ -370,7 +368,7 @@ public class PhoneBook
 			}
 			if (indexValue > personArrary.length)
 			{
-				System.out.println("A person with this name is not in the phone book.\n");
+				System.out.println("A person with this full name is not in the phone book.\n");
 			}
 		}else System.out.println(enumMenu.SEARCH_BY_ERROR + "their full name.\n");
 		
